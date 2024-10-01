@@ -1,88 +1,80 @@
-# Power BI Dashboard de Vendas - Star Schema
+# Power BI Dashboard: Análise de Professores e Cursos
 
-Este repositório contém o projeto de criação de um **Dashboard de Vendas** utilizando o Power BI e um **Star Schema** como modelo de dados. O dashboard apresenta uma visão geral das vendas de uma empresa, permitindo análises interativas de métricas, como o total de vendas, quantidade de vendas por cliente, vendas por produto e vendas ao longo do tempo.
+## Descrição do Projeto
 
-## 📊 Link do Dashboard
+Este projeto tem como objetivo a criação de um modelo dimensional utilizando o **Star Schema** (Esquema em Estrela) para a análise de dados relacionados a professores e cursos ministrados. O foco principal é fornecer insights sobre os professores, cursos oferecidos e departamentos associados, permitindo uma análise eficiente no Power BI.
 
-Você pode acessar o dashboard publicado diretamente no Power BI pelo link abaixo:
+### Objetivo
 
-🔗 [Dashboard de Vendas - Power BI](https://app.powerbi.com/links/sc0v-83A6_?ctid=da49a844-e2e3-40af-86a6-c3819d704f49&pbi_source=linkShare)
+O dashboard criado permite uma visão abrangente sobre os dados dos professores, como o número de cursos que ministram, a distribuição por departamento, e o tempo que passaram lecionando. Além disso, o modelo criado com base no **Star Schema** organiza os dados de maneira otimizada, facilitando a execução de consultas e a visualização dos dados no Power BI.
 
-## 🔧 Tecnologias Utilizadas
+### Link do Dashboard
 
-- **Power BI**: Ferramenta principal utilizada para visualização de dados e criação do dashboard.
-- **MySQL**: Banco de dados utilizado para armazenar e consultar os dados de vendas.
-- **Modelo Star Schema**: Aqui está uma versão expandida da explicação sobre o **Star Schema**:
+- [Acesse o dashboard no Power BI](https://app.powerbi.com/links/sc0v-83A6_?ctid=da49a844-e2e3-40af-86a6-c3819d704f49&pbi_source=linkShare)
 
----
+## Modelo Star Schema
 
-- **Modelo Star Schema**: O modelo de dados segue a arquitetura de esquema estrela (Star Schema), uma das estruturas mais utilizadas em projetos de Business Intelligence (BI) e Data Warehousing. Este modelo é composto por uma **tabela fato** no centro (contendo os dados transacionais, como vendas), rodeada por várias **tabelas dimensionais** (que contêm dados descritivos, como informações de clientes, produtos e datas).
+O modelo segue a arquitetura **Star Schema** (Esquema em Estrela), que organiza os dados em uma tabela de fatos e várias tabelas de dimensões, permitindo consultas rápidas e organizadas para relatórios de Business Intelligence (BI). A tabela fato centraliza as informações principais da análise, enquanto as tabelas de dimensões fornecem detalhes para aprofundar a compreensão desses dados.
 
-  **Por que utilizar o Star Schema?**
-  - **Simplicidade**: O Star Schema é fácil de entender e configurar, o que o torna ideal para ambientes de BI, onde o objetivo é disponibilizar dados para análise de maneira eficiente e acessível para diferentes níveis de usuários.
-  - **Desempenho otimizado para consultas**: Como o Star Schema organiza os dados de forma simples, ele permite consultas rápidas e otimizadas, o que é crucial para relatórios interativos em dashboards. Isso ocorre porque o modelo reduz a complexidade das junções entre tabelas.
-  - **Foco em Análises**: Com o Star Schema, as tabelas fato contêm métricas numéricas (como quantidades e valores de vendas), enquanto as dimensões fornecem contexto (como quem comprou, qual produto foi comprado e quando ocorreu a venda). Esse formato facilita a criação de KPIs e visualizações orientadas a negócios.
-  - **Escalabilidade**: O modelo também é escalável, sendo fácil adicionar novas dimensões ou métricas à tabela fato conforme os dados de vendas crescem ou novas categorias de análises são necessárias.
+### Por que utilizar o Star Schema?
+
+- **Eficiência em Consultas**: Ao centralizar os dados em uma tabela fato e referenciá-los através de dimensões relacionadas, o Star Schema otimiza as consultas, reduzindo o tempo de processamento e simplificando a modelagem dos dados.
+- **Organização e Clareza**: Ao separar as entidades de análise em dimensões específicas, o Star Schema oferece uma estrutura mais clara e fácil de manter, especialmente em ambientes de BI.
+- **Escalabilidade**: Este modelo permite fácil escalabilidade, à medida que novos dados e dimensões podem ser adicionados com simplicidade.
+
+## Estrutura do Modelo
+
+- **Tabela Fato**: `Fato_ProfessorCurso`
+  - Contém informações sobre a relação entre os professores e os cursos ministrados, com detalhes sobre datas e departamentos.
   
-  **Estrutura**
-  - A **tabela fato** central armazena dados transacionais, como vendas, com chaves estrangeiras que se conectam a dimensões.
-  - As **tabelas dimensionais** armazenam dados descritivos, permitindo a exploração de "quem", "o que", "quando", "onde" e "como" em cada venda.
+- **Tabelas Dimensão**:
+  - `Dim_Professor`: Contém detalhes sobre cada professor.
+  - `Dim_Departamento`: Armazena informações sobre os departamentos.
+  - `Dim_Curso`: Contém dados dos cursos ministrados pelos professores.
+  - `Dim_Data`: Dimensão de datas para análise temporal dos dados.
 
-  Esse modelo garante uma organização clara e de fácil manutenção, permitindo a geração de insights mais rápidos e uma experiência mais fluida ao construir relatórios e dashboards no Power BI.
+### Relacionamentos do Modelo
 
---- 
+Os relacionamentos entre as tabelas no Power BI seguem a estrutura 1:N (um-para-muitos), permitindo uma análise eficiente:
 
-Se precisar de mais ajustes ou detalhes adicionais, é só avisar!
-  
-## 📂 Estrutura do Projeto
+- `Fato_ProfessorCurso[ID_Professor]` → `Dim_Professor[ID_Professor]`
+- `Fato_ProfessorCurso[ID_Departamento]` → `Dim_Departamento[ID_Departamento]`
+- `Fato_ProfessorCurso[ID_Curso]` → `Dim_Curso[ID_Curso]`
+- `Fato_ProfessorCurso[ID_Data]` → `Dim_Data[ID_Data]`
 
-### Tabelas no Banco de Dados
+## Visualizações do Dashboard
 
-1. **Fato_Vendas**: Contém os dados transacionais de vendas.
-2. **Dim_Cliente**: Tabela dimensional com informações dos clientes.
-3. **Dim_Produto**: Tabela dimensional com informações dos produtos.
-4. **Dim_Data**: Tabela dimensional que representa as datas.
+### Principais Visualizações
 
-### Relacionamentos do Star Schema
+- **Gráfico de Barras**: Quantidade de professores por departamento.
+- **Gráfico de Pizza**: Distribuição de cursos por departamento.
+- **Tabela Detalhada**: Lista de professores com seus cursos e departamentos.
+- **Cartões de Métricas**: Exibição de métricas chave como número total de professores, total de cursos e média de cursos por professor.
+- **Gráfico de Linhas**: Evolução dos cursos ministrados ao longo do tempo.
 
-- `Fato_Vendas[ID_Cliente] → Dim_Cliente[ID_Cliente]`
-- `Fato_Vendas[ID_Produto] → Dim_Produto[ID_Produto]`
-- `Fato_Vendas[ID_Data] → Dim_Data[ID_Data]`
+### Segmentações (Slicers)
 
-## 🎯 Principais Funcionalidades
+O dashboard também inclui segmentações para filtrar os dados por:
 
-O dashboard permite que os usuários visualizem e interajam com os seguintes indicadores de performance:
+- Departamento
+- Professor
+- Data
 
-- **Total de Vendas**: Valor total das vendas realizadas.
-- **Quantidade de Vendas**: Número total de transações realizadas.
-- **Vendas ao Longo do Tempo**: Gráfico de linha mostrando as vendas distribuídas ao longo do tempo.
-- **Vendas por Cliente**: Gráfico de barras que exibe a contribuição de cada cliente para o total de vendas.
-- **Vendas por Produto**: Gráfico que detalha as vendas por categoria de produto.
+## Como Utilizar o Dashboard
 
+1. **Filtros Interativos**: Utilize as segmentações para filtrar os dados de acordo com o departamento, professor ou período.
+2. **Análise Temporal**: Visualize a evolução dos cursos ministrados ao longo do tempo através dos gráficos de linha.
+3. **Distribuição de Professores e Cursos**: Explore a distribuição de professores e cursos em diferentes departamentos para identificar padrões ou tendências.
 
-## 🛠️ Instruções de Uso
+## Como Atualizar os Dados
 
-1. Clone este repositório para sua máquina local:
-    ```bash
-    git clone https://github.com/seu-usuario/nome-do-repositorio.git
-    ```
+Caso você deseje atualizar os dados do dashboard com novas informações:
 
-2. Abra o Power BI e carregue os dados que estão no banco de dados MySQL.
+1. **Atualize os dados no MySQL** com as inserções e modificações necessárias.
+2. **No Power BI**, clique em "Atualizar" para carregar os dados mais recentes.
+3. Verifique se as novas informações foram refletidas corretamente nas visualizações.
 
-3. Configure o modelo de dados conforme o **Star Schema**, criando os relacionamentos entre as tabelas de fato e dimensão.
+## Conclusão
 
-4. Importe as tabelas para o Power BI e crie os gráficos e KPIs conforme o exemplo no dashboard publicado.
-
-5. Utilize as segmentações (Slicers) para filtrar os dados dinamicamente.
-
-## 📈 Visualizações no Dashboard
-
-O dashboard contém as seguintes visualizações:
-
-- **Cartões de KPI** para mostrar o total de vendas e o número de transações.
-- **Gráficos de Linhas** para as vendas ao longo do tempo.
-- **Gráficos de Barras** para exibir as vendas por cliente e por produto.
-- **Slicers (Segmentações)** para permitir a filtragem por data, cliente e produto.
-
-
+Este projeto demonstra a criação de um **Star Schema** eficaz para análise de dados educacionais, especificamente focado na relação entre professores e cursos. Utilizando o Power BI, foi possível criar um dashboard interativo, oferecendo insights valiosos para gestores e equipes de planejamento acadêmico.
 
