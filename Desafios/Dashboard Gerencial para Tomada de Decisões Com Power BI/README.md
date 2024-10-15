@@ -1,7 +1,7 @@
 # Desafio: Criando um Dashboard Gerencial para Tomada de Decisões com Power BI
 
 ## Descrição do Projeto
-O projeto visa modificar e aprimorar um relatório criativo anteriormente desenvolvido, com o objetivo de melhorar a experiência do usuário. O foco está em fornecer uma interface mais intuitiva e interativa, que facilite a análise e a tomada de decisões informadas. Para entender melhor o processo, assista ao vídeo disponível no link abaixo.
+O projeto visa modificar e aprimorar um relatório criativo anteriormente desenvolvido, com o objetivo de melhorar a experiência do usuário. O foco está em fornecer uma interface mais intuitiva e interativa, que facilite a análise e a tomada de decisões informadas. 
 
 ## Objetivo
 O dashboard criado permite uma visão abrangente dos dados gerenciais, facilitando a análise de informações cruciais para a tomada de decisões. Ele inclui visualizações que ajudam os gestores a identificar tendências, monitorar desempenho e explorar dados de maneira interativa, otimizando o processo de tomada de decisão.
